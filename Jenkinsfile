@@ -50,7 +50,7 @@ pipeline {
             steps {
                sshagent(['virginia-key']) {
                       
-                      //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.16.47 docker stop $(docker ps -aq)'
+                      //sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.16.47 docker ps -aq'
                       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.16.47  docker rm -f $(docker ps -aq)'
                        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.16.47 docker rmi -f fawzy14/demo2:latest'
                       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.16.47 docker run -d  --name demo2$BUILD_NUMBER -p 8080:80 fawzy14/demo2:latest '
