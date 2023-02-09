@@ -10,7 +10,7 @@ pipeline {
 
         stage('build docker image') {
             steps {
-               sh 'docker rmi -f demo2:*'
+               sh """sh 'docker images|grep -i demo| awk \'{print $1":"$2}\'| xargs docker rmi -f'"""
                sh 'docker build -t demo2:$BUILD_NUMBER .'
             }
         }
